@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is signed in
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user owns the document path
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Connectivity test probe
+    match /test/{document} {
+      allow read, write: if true;
+    }
+
+    // User profile document
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId);
+      allow delete: if isOwner(userId);
+
+      // User resumes
+      match /resumes/{resumeId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // User career coach multi-turn chat
+      match /chatHistory/{messageId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Generative studio assets
+      match /studioAssets/{assetId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+  }
+}

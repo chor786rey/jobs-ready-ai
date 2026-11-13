@@ -1,0 +1,6 @@
+{
+  "name": "JobReady AI",
+  "description": "AI career platform by 696969 Marketing (Abhinandan Pandey) for resume scoring, ATS optimization, and interview coaching.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

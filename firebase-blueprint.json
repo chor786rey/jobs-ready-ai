@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account profile and authentication state",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "UserResume": {
+      "title": "UserResume",
+      "description": "Candidate stored resume data and AI diagnostic score",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "resumeText": { "type": "string" },
+        "overallScore": { "type": "number" },
+        "atsCompatibility": { "type": "number" },
+        "skills": { "type": "number" },
+        "experience": { "type": "number" },
+        "keywords": { "type": "number" },
+        "achievements": { "type": "number" },
+        "shortlistProbability": { "type": "number" },
+        "verdict": { "type": "string" },
+        "savedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "resumeText", "overallScore"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Multi-turn Gemini AI Career Coach chat history message",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string" },
+        "modelUsed": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "userId", "role", "content", "timestamp"]
+    },
+    "StudioAsset": {
+      "title": "StudioAsset",
+      "description": "Generative creative studio output (video, headshot, music track)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["image", "video", "music"] },
+        "prompt": { "type": "string" },
+        "model": { "type": "string" },
+        "mediaUrl": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "type", "prompt", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User account document"
+    },
+    "/users/{userId}/resumes/{resumeId}": {
+      "schema": "UserResume",
+      "description": "User saved analyzed resumes and diagnostic scores"
+    },
+    "/users/{userId}/chatHistory/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "User conversation messages with AI career coaches"
+    },
+    "/users/{userId}/studioAssets/{assetId}": {
+      "schema": "StudioAsset",
+      "description": "Generative media assets created in AI Studio"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  /* Obsidian & Graphite neutrals anchored directly to Logo.tsx (#0C1017 & #2B3340) */
+  --color-slate-950: #0C1017;
+  --color-slate-900: #131924;
+  --color-slate-800: #1D2533;
+  --color-slate-700: #2B3340;
+  --color-slate-600: #465063;
+  --color-slate-500: #6B768A;
+  --color-slate-400: #949EB0;
+  --color-slate-300: #C6CCD8;
+  --color-slate-200: #E5E8EE;
+  --color-slate-100: #F4F1EA;
+
+  /* Burnished Champagne & Logo Gold Gradient (#FFB319 -> #F59E0B) */
+  --color-amber-200: #FCE6A6;
+  --color-amber-300: #F7D07A;
+  --color-amber-400: #FFB319;
+  --color-amber-500: #F59E0B;
+  --color-amber-600: #C87F06;
+  --color-amber-900: #2E220D;
+  --color-amber-950: #17120A;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+    --sar: env(safe-area-inset-right, 0px);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #0C1017;
+    color: #F4F1EA;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    overscroll-behavior-y: none;
+  }
+}
+
+@layer utilities {
+  .luxury-surface {
+    background: linear-gradient(160deg, #151C28 0%, #10151F 100%);
+    border: 1px solid #2B3340;
+  }
+
+  .luxury-surface-gold {
+    background: linear-gradient(155deg, rgba(255, 179, 25, 0.08) 0%, #131924 42%, #0E131C 100%);
+    border: 1px solid rgba(255, 179, 25, 0.28);
+  }
+
+  .luxury-gold-btn {
+    background: linear-gradient(135deg, #FCD57B 0%, #FFB319 52%, #E59200 100%);
+    color: #0C1017;
+    box-shadow: 0 8px 24px -6px rgba(255, 179, 25, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  .luxury-gold-btn:hover {
+    background: linear-gradient(135deg, #FDE29B 0%, #FFC03D 52%, #F59E0B 100%);
+  }
+
+  .luxury-gold-text {
+    background: linear-gradient(135deg, #FCE6A6 0%, #FFB319 55%, #F59E0B 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom subtle gold-tinted scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 179, 25, 0.18);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 179, 25, 0.38);
+}
